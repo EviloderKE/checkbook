@@ -13,9 +13,11 @@ class RecordController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Record $record)
     {
         //
+        $info = $record->paginate(1);
+        return view('record.index', ['info' => $info]);
     }
 
     /**
@@ -26,7 +28,7 @@ class RecordController extends Controller
     public function create()
     {
         //
-        return view('Record.create');
+        return view('record.create');
     }
 
     /**
@@ -58,17 +60,16 @@ class RecordController extends Controller
             'note' => 'bail|required|max:200'
         ]);
 
-        $record->user_id = 1;
-        $record->type = $request->type;
-        $record->datetime = $request->datetime;
-        $record->action = $request->action;
-        $record->amount = $request->amount;
-        $record->tag = $request->tag;
-        $record->note = $request->note;
-        $record->is_delete = 1;
+        $data = $request->except('_token');
+        $data['user_id'] = 1;
+        $data['is_delete'] = 1;
 
-        $res = $record->save();
-        dd($res);
+        $result = $record->fill($data)->save();
+        if($result){
+            return redirect()->route('records.index')->with('message', '写入成功');
+        }else{
+            return back()->with('errors', '写入失败');
+        }
     }
 
     /**

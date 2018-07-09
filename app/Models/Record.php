@@ -13,4 +13,5 @@ class Record extends Model
     //时间戳格式
     //protected $dateFormat = 'Y-m-d H:i:s';
 
+    protected $fillable = ['user_id', 'type', 'datetime', 'action', 'amount', 'tag', 'note', 'is_delete'];
 }
