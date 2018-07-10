@@ -16,7 +16,7 @@ class RecordController extends Controller
     public function index(Record $record)
     {
         //
-        $info = $record->paginate(1);
+        $info = $record->paginate(5);
         return view('record.index', ['info' => $info]);
     }
 
@@ -42,25 +42,16 @@ class RecordController extends Controller
     {
         //
         $this->validate($request, [
-            'type' => [
-                'bail',
-                'required',
-                Rule::in(['1', '2']),
-            ],
-
+            'type' => ['bail', 'required', Rule::in(['1', '2'])],
             //|date_format:"Y-m-d H:i:s"
             'datetime' => 'bail|required',
-
             'action' => ['bail', 'required', Rule::in([1, 2, 3, 4])],
-
             'amount' => 'bail|required|numeric',
-
             'tag' => ['bail', 'required', Rule::in([1, 2, 3, 4, 5, 6])],
-
             'note' => 'bail|required|max:200'
         ]);
 
-        $data = $request->except('_token');
+        $data = $request->input();
         $data['user_id'] = 1;
         $data['is_delete'] = 1;
 
@@ -92,6 +83,8 @@ class RecordController extends Controller
     public function edit($id)
     {
         //
+        $info = Record::where('id', $id)->first();
+        return view('record.edit', ['info' => $info]);
     }
 
     /**
@@ -101,9 +94,23 @@ class RecordController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Record $record)
     {
-        //
+        $this->validate($request, [
+            'type' => ['bail', 'required', Rule::in(['1', '2'])],
+            //|date_format:"Y-m-d H:i:s"
+            'datetime' => 'bail|required',
+            'action' => ['bail', 'required', Rule::in([1, 2, 3, 4])],
+            'amount' => 'bail|required|numeric',
+            'tag' => ['bail', 'required', Rule::in([1, 2, 3, 4, 5, 6])],
+            'note' => 'bail|required|max:200'
+        ]);
+        $res = $record->update($request->all());
+        if($res){
+            return redirect()->route('records.index')->with('message', '更新成功');
+        }else{
+            return back()->with('errors', '更新失败');
+        }
     }
 
     /**

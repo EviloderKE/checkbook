@@ -380,6 +380,21 @@
         </div>
         <!-- /.row -->
         <div class="row">
+
+            <!--提示信息-->
+            @if (Session('message'))
+                <div class="col-lg-12">
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <ul>
+                            <li>{{ Session('message') }}</li>
+                        </ul>
+                    </div>
+                </div>
+            @endif
+
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -412,7 +427,7 @@
                                 <td>{{$value->note}}</td>
                                 <td>{{$value->datetime}}</td>
                                 <td class="center">
-                                    <a href=""><i class="glyphicon glyphicon-pencil"></i></a>
+                                    <a href="{{route('records.edit', ['id' => $value->id])}}"><i class="glyphicon glyphicon-pencil"></i></a>
                                     <a href=""><i class="glyphicon glyphicon-trash"></i></a>
                                 </td>
                             </tr>
