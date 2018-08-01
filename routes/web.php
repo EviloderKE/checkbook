@@ -15,4 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('records', 'RecordController');
+Route::resource('records', 'RecordController')->middleware('checkLogin');
+
+Route::any('login', 'LoginController@login')->name('login');
+
+Route::get('logout', 'LoginController@logout')->name('logout');
