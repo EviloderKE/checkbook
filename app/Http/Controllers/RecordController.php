@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Record;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
 class RecordController extends Controller
@@ -52,7 +53,7 @@ class RecordController extends Controller
         ]);
 
         $data = $request->input();
-        $data['user_id'] = 1;
+        $data['user_id'] = Auth::id();
         $data['is_delete'] = 1;
 
         $result = $record->fill($data)->save();
