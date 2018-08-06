@@ -8,11 +8,6 @@ use Illuminate\Support\Facades\Auth;
 class LoginController extends Controller
 {
     public function login(Request $request){
-        //判断是否已经登陆
-        if(Auth::check()){
-            return redirect()->intended(route('records.index'));
-        }
-
         if($request->isMethod('post')){
             $email = $request->input('email');
             $password = $request->input('password');
