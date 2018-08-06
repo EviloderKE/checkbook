@@ -7,6 +7,12 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
+    public function __construct(){
+        $this->middleware('guest')->only('login');
+
+        $this->middleware('auth')->only('logout');
+    }
+
     public function login(Request $request){
         if($request->isMethod('post')){
             $email = $request->input('email');
