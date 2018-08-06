@@ -58,7 +58,6 @@ class RecordController extends Controller
 
         $data = $request->input();
         $data['user_id'] = Auth::id();
-        $data['is_delete'] = 1;
 
         $result = $record->fill($data)->save();
         if($result){
