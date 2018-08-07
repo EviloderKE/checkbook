@@ -397,17 +397,17 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form class="form-horizontal" action="{{route('records.update', ['id' => $info->id])}}" method="post">
+                                    <form class="form-horizontal" action="{{route('records.update', ['id' => $record->id])}}" method="post">
                                         {{csrf_field()}}
                                         {{ method_field('PUT') }}
                                         <div class="form-group">
                                             <label for="income" class="col-sm-2 control-label">记录类型</label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                 <label class="radio-inline">
-                                                    <input type="radio" name="type" id="income" value="1" @if ($info->type == 1) checked @endif> 收入
+                                                    <input type="radio" name="type" id="income" value="1" @if ($record->type == 1) checked @endif> 收入
                                                 </label>
                                                 <label class="radio-inline">
-                                                    <input type="radio" name="type" id="expense" value="2" @if ($info->type == 2) checked @endif> 支出
+                                                    <input type="radio" name="type" id="expense" value="2" @if ($record->type == 2) checked @endif> 支出
                                                 </label>
                                             </div>
                                         </div>
@@ -416,7 +416,7 @@
                                             <label for="datetime" class="col-sm-2 control-label">时间</label>
                                             <div class="col-md-6 col-sm-6 col-xs-10">
                                                 <div class="input-group date datetime">
-                                                    <input type="text" class="form-control" name="datetime" id="dataaetime" readonly value="{{$info->datetime}}">
+                                                    <input type="text" class="form-control" name="datetime" id="dataaetime" readonly value="{{$record->datetime}}">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                                                 </div>
                                             </div>
@@ -426,10 +426,10 @@
                                             <label for="action" class="col-sm-2 control-label">方式</label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                 <select class="form-control" name="action" id="action">
-                                                    <option value="1" @if ($info->action == 1) selected @endif>银行卡</option>
-                                                    <option value="2" @if ($info->action == 2) selected @endif>支付宝</option>
-                                                    <option value="3" @if ($info->action == 3) selected @endif>微信</option>
-                                                    <option value="4" @if ($info->action == 4) selected @endif>现金</option>
+                                                    <option value="1" @if ($record->action == 1) selected @endif>银行卡</option>
+                                                    <option value="2" @if ($record->action == 2) selected @endif>支付宝</option>
+                                                    <option value="3" @if ($record->action == 3) selected @endif>微信</option>
+                                                    <option value="4" @if ($record->action == 4) selected @endif>现金</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -437,7 +437,7 @@
                                         <div class="form-group">
                                             <label for="amount" class="col-sm-2 control-label">金额</label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <input type="number" class="form-control" id="amount" name="amount" value="{{$info->amount}}">
+                                                <input type="number" class="form-control" id="amount" name="amount" value="{{$record->amount}}">
                                             </div>
                                         </div>
 
@@ -445,12 +445,12 @@
                                             <label for="action" class="col-sm-2 control-label">标签</label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                 <select class="form-control" name="tag" id="action">
-                                                    <option value="1" @if ($info->tag == 1) selected @endif>衣</option>
-                                                    <option value="2" @if ($info->tag == 2) selected @endif>食</option>
-                                                    <option value="3" @if ($info->tag == 3) selected @endif>住</option>
-                                                    <option value="4" @if ($info->tag == 4) selected @endif>行</option>
-                                                    <option value="5" @if ($info->tag == 5) selected @endif>工资</option>
-                                                    <option value="6" @if ($info->tag == 6) selected @endif>转账</option>
+                                                    <option value="1" @if ($record->tag == 1) selected @endif>衣</option>
+                                                    <option value="2" @if ($record->tag == 2) selected @endif>食</option>
+                                                    <option value="3" @if ($record->tag == 3) selected @endif>住</option>
+                                                    <option value="4" @if ($record->tag == 4) selected @endif>行</option>
+                                                    <option value="5" @if ($record->tag == 5) selected @endif>工资</option>
+                                                    <option value="6" @if ($record->tag == 6) selected @endif>转账</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -458,7 +458,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">备注</label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <textarea class="form-control" rows="3" name="note">{{$info->note}}</textarea>
+                                                <textarea class="form-control" rows="3" name="note">{{$record->note}}</textarea>
                                             </div>
                                         </div>
 

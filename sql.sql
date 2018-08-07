@@ -12,5 +12,5 @@ create table `records`(
   `note` varchar(200) not null default '' comment '备注',
   `created_at` datetime not null comment '写入时间',
   `updated_at` datetime not null comment '更新时间',
-  `delete_at` datetime default null comment '删除时间'
+  `deleted_at` datetime default null comment '删除时间'
 )engine=innodb charset=utf8

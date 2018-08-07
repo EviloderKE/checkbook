@@ -6,6 +6,7 @@ use App\Models\Record;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
+use phpDocumentor\Reflection\Types\Compound;
 
 class RecordController extends Controller
 {
@@ -14,15 +15,13 @@ class RecordController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @param Record $record
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(Record $record)
     {
-        //
         $info = $record->paginate(5);
-        return view('record.index', ['info' => $info]);
+        return view('record.index', compact('info'));
     }
 
     /**
@@ -32,7 +31,6 @@ class RecordController extends Controller
      */
     public function create()
     {
-        //
         return view('record.create');
     }
 
@@ -68,34 +66,19 @@ class RecordController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Record $record
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show($id)
+    public function edit(Record $record)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-        $info = Record::where('id', $id)->first();
-        return view('record.edit', ['info' => $info]);
+        return view('record.edit', compact('record'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param $record
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Record $record)
@@ -118,13 +101,13 @@ class RecordController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Record $record
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(Record $record)
     {
-        //
+        $record->delete();
+        return back()->with('message', '删除成功');
     }
 }

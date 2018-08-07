@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('records', 'RecordController');
+Route::resource('records', 'RecordController', ['expect' => ['show']]);
 
 Route::any('login', 'LoginController@login')->name('login');
 

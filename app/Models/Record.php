@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Record extends Model
 {
+    use SoftDeletes;
+
     //表名
     protected $table = 'records';
 
