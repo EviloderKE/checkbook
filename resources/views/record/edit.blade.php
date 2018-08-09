@@ -403,12 +403,10 @@
                                         <div class="form-group">
                                             <label for="income" class="col-sm-2 control-label">记录类型</label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <label class="radio-inline">
-                                                    <input type="radio" name="type" id="income" value="1" @if ($record->type == 1) checked @endif> 收入
-                                                </label>
-                                                <label class="radio-inline">
-                                                    <input type="radio" name="type" id="expense" value="2" @if ($record->type == 2) checked @endif> 支出
-                                                </label>
+                                                @foreach($recordType as $k => $v)
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="type" value="{{$k}}" @if ($record->type == $k) checked @endif>{{$v}}</label>
+                                                @endforeach
                                             </div>
                                         </div>
 
@@ -426,10 +424,9 @@
                                             <label for="action" class="col-sm-2 control-label">方式</label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                 <select class="form-control" name="action" id="action">
-                                                    <option value="1" @if ($record->action == 1) selected @endif>银行卡</option>
-                                                    <option value="2" @if ($record->action == 2) selected @endif>支付宝</option>
-                                                    <option value="3" @if ($record->action == 3) selected @endif>微信</option>
-                                                    <option value="4" @if ($record->action == 4) selected @endif>现金</option>
+                                                    @foreach($recordAction as $k => $v)
+                                                        <option value="{{$k}}" @if ($record->action == $k) selected @endif>{{$v}}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -445,12 +442,9 @@
                                             <label for="action" class="col-sm-2 control-label">标签</label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                 <select class="form-control" name="tag" id="action">
-                                                    <option value="1" @if ($record->tag == 1) selected @endif>衣</option>
-                                                    <option value="2" @if ($record->tag == 2) selected @endif>食</option>
-                                                    <option value="3" @if ($record->tag == 3) selected @endif>住</option>
-                                                    <option value="4" @if ($record->tag == 4) selected @endif>行</option>
-                                                    <option value="5" @if ($record->tag == 5) selected @endif>工资</option>
-                                                    <option value="6" @if ($record->tag == 6) selected @endif>转账</option>
+                                                    @foreach($recordTag as $k => $v)
+                                                        <option value="{{$k}}" @if ($record->tag == $k) selected @endif>{{$v}}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>

@@ -96,7 +96,13 @@ class RecordController extends Controller
      */
     public function edit(Record $record)
     {
-        return view('record.edit', compact('record'));
+        $recordType = $this->recordType;
+
+        $recordAction = $this->recordAction;
+
+        $recordTag = $this->recordTag;
+
+        return view('record.edit', compact('record', 'recordType', 'recordAction', 'recordTag'));
     }
 
     /**
