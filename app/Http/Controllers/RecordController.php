@@ -10,8 +10,20 @@ use phpDocumentor\Reflection\Types\Compound;
 
 class RecordController extends Controller
 {
+    private $recordType;
+
+    private $recordAction;
+
+    private $recordTag;
+
     public function __construct(){
         $this->middleware('auth');
+
+        $this->recordType = config('common.record_type');
+
+        $this->recordAction = config('common.record_action');
+
+        $this->recordTag = config('common.record_tag');
     }
 
     /**
@@ -21,7 +33,14 @@ class RecordController extends Controller
     public function index(Record $record)
     {
         $info = $record->paginate(5);
-        return view('record.index', compact('info'));
+
+        $recordType = $this->recordType;
+
+        $recordAction = $this->recordAction;
+
+        $recordTag = $this->recordTag;
+
+        return view('record.index', compact('info', 'recordType', 'recordAction', 'recordTag'));
     }
 
     /**
@@ -49,7 +68,7 @@ class RecordController extends Controller
             //|date_format:"Y-m-d H:i:s"
             'datetime' => 'bail|required',
             'action' => ['bail', 'required', Rule::in([1, 2, 3, 4])],
-            'amount' => 'bail|required|numeric',
+            'amount' => 'bail|required|numeric|min:0',
             'tag' => ['bail', 'required', Rule::in([1, 2, 3, 4, 5, 6])],
             'note' => 'bail|required|max:200'
         ]);

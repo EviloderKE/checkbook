@@ -434,10 +434,10 @@
                                 @foreach($info as $key => $value)
                                     <tr>
                                         <td>{{++$key}}</td>
-                                        <td>{{$value->type}}</td>
-                                        <td>{{$value->action}}</td>
+                                        <td>{{$recordType[$value->type]}}</td>
+                                        <td>{{$recordAction[$value->action]}}</td>
                                         <td>{{$value->amount}}</td>
-                                        <td>{{$value->tag}}</td>
+                                        <td>{{$recordTag[$value->tag]}}</td>
                                         <td>{{$value->note}}</td>
                                         <td>{{$value->datetime}}</td>
                                         <td class="center">

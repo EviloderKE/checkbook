@@ -415,7 +415,7 @@
                                             <label for="datetime" class="col-sm-2 control-label">时间</label>
                                             <div class="col-md-6 col-sm-6 col-xs-10">
                                                 <div class="input-group date datetime">
-                                                    <input type="text" class="form-control" name="datetime" id="dataaetime" readonly>
+                                                    <input type="text" class="form-control" name="datetime" id="datetime" readonly>
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                                                 </div>
                                             </div>
@@ -436,7 +436,7 @@
                                         <div class="form-group">
                                             <label for="amount" class="col-sm-2 control-label">金额</label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <input type="number" class="form-control" id="amount" name="amount">
+                                                <input type="text" class="form-control" id="amount" name="amount">
                                             </div>
                                         </div>
 
