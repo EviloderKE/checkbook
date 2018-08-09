@@ -414,7 +414,7 @@
                                             <label for="datetime" class="col-sm-2 control-label">时间</label>
                                             <div class="col-md-6 col-sm-6 col-xs-10">
                                                 <div class="input-group date datetime">
-                                                    <input type="text" class="form-control" name="datetime" id="dataaetime" readonly value="{{$record->datetime}}">
+                                                    <input type="text" class="form-control" name="datetime" id="datetime" readonly value="{{$record->datetime}}">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                                                 </div>
                                             </div>
