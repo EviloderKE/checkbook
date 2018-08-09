@@ -405,7 +405,7 @@
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                 @foreach($recordType as $k => $v)
                                                     <label class="radio-inline">
-                                                        <input type="radio" name="type" value="{{$k}}" @if ($record->type == $k) checked @endif>{{$v}}</label>
+                                                        <input type="radio" name="type" value="{{$k}}" @if(old('type', $record->type) == $k) checked @endif>{{$v}}</label>
                                                 @endforeach
                                             </div>
                                         </div>
@@ -414,7 +414,7 @@
                                             <label for="datetime" class="col-sm-2 control-label">时间</label>
                                             <div class="col-md-6 col-sm-6 col-xs-10">
                                                 <div class="input-group date datetime">
-                                                    <input type="text" class="form-control" name="datetime" id="datetime" readonly value="{{$record->datetime}}">
+                                                    <input type="text" class="form-control" name="datetime" id="datetime" readonly value="{{old('datetime', $record->datetime)}}">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                                                 </div>
                                             </div>
@@ -425,7 +425,7 @@
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                 <select class="form-control" name="action" id="action">
                                                     @foreach($recordAction as $k => $v)
-                                                        <option value="{{$k}}" @if ($record->action == $k) selected @endif>{{$v}}</option>
+                                                        <option value="{{$k}}" @if (old('action', $record->action) == $k) selected @endif>{{$v}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -434,16 +434,16 @@
                                         <div class="form-group">
                                             <label for="amount" class="col-sm-2 control-label">金额</label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <input type="number" class="form-control" id="amount" name="amount" value="{{$record->amount}}">
+                                                <input type="text" class="form-control" id="amount" name="amount" value="{{old('amount', $record->amount)}}">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="action" class="col-sm-2 control-label">标签</label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <select class="form-control" name="tag" id="action">
+                                                <select class="form-control" name="tag" id="tag">
                                                     @foreach($recordTag as $k => $v)
-                                                        <option value="{{$k}}" @if ($record->tag == $k) selected @endif>{{$v}}</option>
+                                                        <option value="{{$k}}" @if (old('tag', $record->tag) == $k) selected @endif>{{$v}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -452,7 +452,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">备注</label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <textarea class="form-control" rows="3" name="note">{{$record->note}}</textarea>
+                                                <textarea class="form-control" rows="3" name="note">{{old('note', $record->note)}}</textarea>
                                             </div>
                                         </div>
 
