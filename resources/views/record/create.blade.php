@@ -402,12 +402,10 @@
                                         <div class="form-group">
                                             <label for="income" class="col-sm-2 control-label">记录类型</label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <label class="radio-inline">
-                                                    <input type="radio" name="type" id="income" value="1"> 收入
-                                                </label>
-                                                <label class="radio-inline">
-                                                    <input type="radio" name="type" id="expense" value="2"> 支出
-                                                </label>
+                                                @foreach($recordType as $k => $v)
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="type" value="{{$k}}" @if($k == 1) checked @endif>{{$v}}</label>
+                                                @endforeach
                                             </div>
                                         </div>
 
@@ -425,10 +423,9 @@
                                             <label for="action" class="col-sm-2 control-label">方式</label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                 <select class="form-control" name="action" id="action">
-                                                    <option value="1">银行卡</option>
-                                                    <option value="2">支付宝</option>
-                                                    <option value="3">微信</option>
-                                                    <option value="4">现金</option>
+                                                    @foreach($recordAction as $k => $v)
+                                                        <option value="{{$k}}">{{$v}}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -444,12 +441,9 @@
                                             <label for="action" class="col-sm-2 control-label">标签</label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                 <select class="form-control" name="tag" id="action">
-                                                    <option value="1">衣</option>
-                                                    <option value="2">食</option>
-                                                    <option value="3">住</option>
-                                                    <option value="4">行</option>
-                                                    <option value="5">工资</option>
-                                                    <option value="6">转账</option>
+                                                    @foreach($recordTag as $k => $v)
+                                                        <option value="{{$k}}">{{$v}}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>

@@ -50,7 +50,13 @@ class RecordController extends Controller
      */
     public function create()
     {
-        return view('record.create');
+        $recordType = $this->recordType;
+
+        $recordAction = $this->recordAction;
+
+        $recordTag = $this->recordTag;
+
+        return view('record.create', compact('recordType', 'recordAction', 'recordTag'));
     }
 
     /**
