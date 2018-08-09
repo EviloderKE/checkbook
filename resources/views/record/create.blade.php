@@ -404,7 +404,7 @@
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                 @foreach($recordType as $k => $v)
                                                     <label class="radio-inline">
-                                                        <input type="radio" name="type" value="{{$k}}" @if($k == 1) checked @endif>{{$v}}</label>
+                                                        <input type="radio" name="type" value="{{$k}}" @if(old('type') == $k) checked @else ($k == 1) checked @endif>{{$v}}</label>
                                                 @endforeach
                                             </div>
                                         </div>
@@ -424,7 +424,7 @@
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                 <select class="form-control" name="action" id="action">
                                                     @foreach($recordAction as $k => $v)
-                                                        <option value="{{$k}}">{{$v}}</option>
+                                                        <option value="{{$k}}" @if(old('action') == $k) selected @endif>{{$v}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -440,9 +440,9 @@
                                         <div class="form-group">
                                             <label for="action" class="col-sm-2 control-label">标签</label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <select class="form-control" name="tag" id="action">
+                                                <select class="form-control" name="tag" id="tag">
                                                     @foreach($recordTag as $k => $v)
-                                                        <option value="{{$k}}">{{$v}}</option>
+                                                        <option value="{{$k}}" @if(old('tag') == $k) selected @endif>{{$v}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
