@@ -7,10 +7,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Validation\Rule;
-use phpDocumentor\Reflection\Types\Compound;
 
 class RecordController extends Controller
 {
+
+    protected $rule;
 
     public function __construct(){
         $this->middleware('auth');
@@ -20,15 +21,26 @@ class RecordController extends Controller
         View::share('recordAction', config('common.record_action'));
 
         View::share('recordTag', config('common.record_tag'));
+
+        $this->rule = [
+            'type' => ['bail', 'required', Rule::in(['1', '2'])],
+            //|date_format:"Y-m-d H:i:s"
+            'datetime' => 'bail|required',
+            'action' => ['bail', 'required', Rule::in([1, 2, 3, 4])],
+            'amount' => 'bail|required|numeric|min:0',
+            'tag' => ['bail', 'required', Rule::in([1, 2, 3, 4, 5, 6])],
+            'note' => 'bail|required|max:200'
+        ];
     }
 
     /**
+     * 记录列表
      * @param Record $record
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(Record $record)
     {
-        $info = $record->paginate(15);
+        $info = $record->orderBy('datetime', 'desc')->paginate(15);
 
         return view('record.index', compact('info'));
     }
@@ -52,16 +64,7 @@ class RecordController extends Controller
      */
     public function store(Request $request, Record $record)
     {
-        //
-        $this->validate($request, [
-            'type' => ['bail', 'required', Rule::in(['1', '2'])],
-            //|date_format:"Y-m-d H:i:s"
-            'datetime' => 'bail|required',
-            'action' => ['bail', 'required', Rule::in([1, 2, 3, 4])],
-            'amount' => 'bail|required|numeric|min:0',
-            'tag' => ['bail', 'required', Rule::in([1, 2, 3, 4, 5, 6])],
-            'note' => 'bail|required|max:200'
-        ]);
+        $this->validate($request, $this->rule);
 
         $data = $request->input();
         $data['user_id'] = Auth::id();
@@ -92,15 +95,7 @@ class RecordController extends Controller
      */
     public function update(Request $request, Record $record)
     {
-        $this->validate($request, [
-            'type' => ['bail', 'required', Rule::in(['1', '2'])],
-            //|date_format:"Y-m-d H:i:s"
-            'datetime' => 'bail|required',
-            'action' => ['bail', 'required', Rule::in([1, 2, 3, 4])],
-            'amount' => 'bail|required|numeric|min:0',
-            'tag' => ['bail', 'required', Rule::in([1, 2, 3, 4, 5, 6])],
-            'note' => 'bail|required|max:200'
-        ]);
+        $this->validate($request, $this->rule);
         $res = $record->update($request->all());
         if($res){
             return redirect()->route('records.index')->with('message', '更新成功');

@@ -426,7 +426,7 @@
                                     <th>金额</th>
                                     <th>标签</th>
                                     <th>备注</th>
-                                    <th>使用时间</th>
+                                    <th>支付时间</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
