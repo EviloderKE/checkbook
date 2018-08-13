@@ -5,25 +5,21 @@ namespace App\Http\Controllers;
 use App\Models\Record;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
 use Illuminate\Validation\Rule;
 use phpDocumentor\Reflection\Types\Compound;
 
 class RecordController extends Controller
 {
-    private $recordType;
-
-    private $recordAction;
-
-    private $recordTag;
 
     public function __construct(){
         $this->middleware('auth');
 
-        $this->recordType = config('common.record_type');
+        View::share('recordType', config('common.record_type'));
 
-        $this->recordAction = config('common.record_action');
+        View::share('recordAction', config('common.record_action'));
 
-        $this->recordTag = config('common.record_tag');
+        View::share('recordTag', config('common.record_tag'));
     }
 
     /**
@@ -34,13 +30,7 @@ class RecordController extends Controller
     {
         $info = $record->paginate(15);
 
-        $recordType = $this->recordType;
-
-        $recordAction = $this->recordAction;
-
-        $recordTag = $this->recordTag;
-
-        return view('record.index', compact('info', 'recordType', 'recordAction', 'recordTag'));
+        return view('record.index', compact('info'));
     }
 
     /**
@@ -50,13 +40,7 @@ class RecordController extends Controller
      */
     public function create()
     {
-        $recordType = $this->recordType;
-
-        $recordAction = $this->recordAction;
-
-        $recordTag = $this->recordTag;
-
-        return view('record.create', compact('recordType', 'recordAction', 'recordTag'));
+        return view('record.create');
     }
 
     /**
@@ -96,13 +80,7 @@ class RecordController extends Controller
      */
     public function edit(Record $record)
     {
-        $recordType = $this->recordType;
-
-        $recordAction = $this->recordAction;
-
-        $recordTag = $this->recordTag;
-
-        return view('record.edit', compact('record', 'recordType', 'recordAction', 'recordTag'));
+        return view('record.edit', compact('record'));
     }
 
     /**
