@@ -14,3 +14,9 @@ create table `records`(
   `updated_at` datetime not null comment '更新时间',
   `deleted_at` datetime default null comment '删除时间'
 )engine=innodb charset=utf8
+
+drop table if exists `category`;
+create table `category`(
+    `id` int unsigned not null primary key auto_increment,
+    `name` varchar(255) not null default '' comment '分类名称'
+)engine=InnoDB charset=utf8 comment='分类表';
