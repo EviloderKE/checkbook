@@ -112,6 +112,19 @@
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
+
+            <li>
+                <a href="#"><i class="fa fa-files-o fa-fw"></i> 商品类别<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{{route('category.create')}}">类别添加</a>
+                    </li>
+                    <li>
+                        <a href="{{route('category.index')}}">类别列表</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
         </ul>
     </div>
     <!-- /.sidebar-collapse -->
