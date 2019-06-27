@@ -125,6 +125,19 @@
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
+
+            <li>
+                <a href="#"><i class="fa fa-files-o fa-fw"></i> 商品属性<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{{route('attribute.create')}}">属性添加</a>
+                    </li>
+                    <li>
+                        <a href="{{route('attribute.index')}}">属性列表</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
         </ul>
     </div>
     <!-- /.sidebar-collapse -->

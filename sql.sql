@@ -20,3 +20,10 @@ create table `category`(
     `id` int unsigned not null primary key auto_increment,
     `name` varchar(255) not null default '' comment '分类名称'
 )engine=InnoDB charset=utf8 comment='分类表';
+
+drop table if exists `attribute`;
+create table `attribute`(
+    `id` int unsigned not null primary key auto_increment,
+    `category_id` int unsigned not null comment '分类id',
+    `name` varchar(255) not null default '' comment '属性名称'
+)engine=InnoDB charset=utf8 comment='属性表';

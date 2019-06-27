@@ -15,6 +15,9 @@ class CategoryController extends Controller
     public function index(Category $category)
     {
         //
+        /*$res = $category->first()->attributes;
+        dd($res);*/
+
         $info = $category->paginate(15);
 
         return view('category.index', compact('info'));

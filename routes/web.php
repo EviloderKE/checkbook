@@ -19,6 +19,8 @@ Route::resource('records', 'RecordController', ['expect' => ['show']]);
 
 Route::resource('category', 'CategoryController');
 
+Route::resource('attribute', 'AttributeController');
+
 Route::any('login', 'LoginController@login')->name('login');
 
 Route::get('logout', 'LoginController@logout')->name('logout');

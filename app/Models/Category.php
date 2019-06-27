@@ -12,4 +12,8 @@ class Category extends Model
 
     public $timestamps = false;
 
+    public function attributes(){
+        return $this->hasMany('App\Models\Attribute', 'category_id', 'id');
+    }
+
 }
